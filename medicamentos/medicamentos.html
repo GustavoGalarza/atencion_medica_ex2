@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Medicamentos Recetados</title>
+    <link rel="stylesheet" type="text/css" href="/styless.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <nav>
+        <ul class="menu">
+            <li><a href="/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="/pacientes/pacientes.html"><i class="fas fa-user"></i> Gestion Pacientes</a>
+                <ul class="submenu">
+                    <li><a href="/pacientes/pacientes_insertar.php"><i class="fas fa-plus"></i> Agregar</a></li>
+                    <li><a href="/pacientes/pacientes_modificar.php"><i class="fas fa-edit"></i> Modificar</a></li>
+                    <li><a href="/pacientes/pacientes_eliminar.php"><i class="fas fa-trash"></i> Eliminar</a></li>
+                    <li><a href="/pacientes/pacientes_mostrar.php"><i class="fas fa-list"></i> Mostrar</a></li>
+                </ul>
+            </li>
+            <li><a href="/diagnostico/diagnosticos.html"><i class="fas fa-stethoscope"></i> Estados y diagnósticos</a>
+                <ul class="submenu">
+                    <li><a href="/diagnostico/diagnostico_agregar.php"><i class="fas fa-plus"></i> Agregar</a></li>
+                    <li><a href="/diagnostico/diagnostico_modificar.php"><i class="fas fa-edit"></i> Modificar</a></li>
+                    <li><a href="/diagnostico/diagnosticos_eliminar.php"><i class="fas fa-trash"></i> Eliminar</a></li>
+                    <li><a href="/diagnostico/diagnosticos_mostrar.php"><i class="fas fa-list"></i> Mostrar</a></li>
+                </ul>
+            </li>
+            <li><a href="/resultados_laboratorio/resultados_laboratorio.html"><i class="fas fa-notes-medical"></i> Resultados de LAB</a>
+                <ul class="submenu">
+                    <li><a href="/resultados_laboratorio/resultados_laboratorio_agregar.php"><i class="fas fa-plus"></i> Agregar</a></li>
+                    <li><a href="/resultados_laboratorio/resultados_laboratorio_modificar.php"><i class="fas fa-edit"></i> Modificar</a></li>
+                    <li><a href="/resultados_laboratorio/resultados_eliminar.php"><i class="fas fa-trash"></i> Eliminar</a></li>
+                    <li><a href="/resultados_laboratorio/resultados_mostrar.php"><i class="fas fa-list"></i> Mostrar</a></li>
+                </ul>
+            </li>
+            <li><a href="medicamentos.html"><i class="fas fa-pills"></i> Medicamentos recetados</a>
+                <ul class="submenu">
+                    <li><a href="medicamentos_agregar.php"><i class="fas fa-plus"></i> Agregar</a></li>
+                    <li><a href="medicamentos_modificar.php"><i class="fas fa-edit"></i> Modificar</a></li>
+                    <li><a href="medicamentos_eliminar.php"><i class="fas fa-trash"></i> Eliminar</a></li>
+                    <li><a href="medicamentos_mostrar.php"><i class="fas fa-list"></i> Mostrar</a></li>
+                </ul>
+            </li>
+            <li><a href="/planes_tratamiento/planes_tratamiento.html"><i class="fas fa-clipboard-list"></i> Planes de Tratamiento</a>
+                <ul class="submenu">
+                    <li><a href="/planes_tratamiento/planes_tratamiento_agregar.php"><i class="fas fa-plus"></i> Agregar</a></li>
+                    <li><a href="/planes_tratamiento/planes_tratamiento_modificar.php"><i class="fas fa-edit"></i> Modificar</a></li>
+                    <li><a href="/planes_tratamiento/planes_eliminar.php"><i class="fas fa-trash"></i> Eliminar</a></li>
+                    <li><a href="/planes_tratamiento/planes_mostrar.php"><i class="fas fa-list"></i> Mostrar</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div class="background-image"></div>
+    <div class="contenido">
+        <section>
+            <h1>Gestión de Medicamentos Recetados</h1>
+            <div class="concepto">
+                <p>
+                    La administración adecuada de medicamentos es crucial para el proceso de atención médica.
+                    Aquí, en nuestro centro médico, mantenemos un registro preciso de los medicamentos recetados a nuestros pacientes.
+                </p>
+                <img src="https://webimages.iadb.org/Drupal_pantheon/2022-04/hero-prescription-drugs.jpg?VersionId=_6XpynOAot_pHarawnH3V4dYF6bh3LfC" alt="Imagen de Medicamentos Recetados">
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2834/2834155.png" alt="Añadir Medicamento" onclick="redirigirA('medicamentos_agregar.php')">
+                    <h3>Añadir Medicamento</h3>
+                    <p>Registra un nuevo medicamento recetado en nuestra base de datos para su administración a pacientes.</p>
+                </div>
+                <div class="card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3480/3480890.png" alt="Modificar Medicamento" onclick="redirigirA('medicamentos_modificar.php')">
+                    <h3>Modificar Medicamento</h3>
+                    <p>Realiza cambios en la información de medicamentos recetados existentes según las necesidades de los pacientes.</p>
+                </div>
+                <div class="card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4633/4633214.png" alt="Eliminar Medicamento" onclick="redirigirA('medicamentos_eliminar.php')">
+                    <h3>Eliminar Medicamentos</h3>
+                    <p>Elimina medicamentos registrados de la base de datos si ya no son necesarios.</p>
+                </div>
+                <div class="card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3555/3555195.png" alt="Mostrar Medicamento" onclick="redirigirA('medicamentos_mostrar.php')">
+                    <h3>Mostrar Medicamentos</h3>
+                    <p>Consulta la lista de medicamentos registrados para nuestros pacientes.</p>
+                </div>
+            </div>
+            <script>
+                function redirigirA(url) {
+                    window.location.href = url; // Redirige a la URL especificada
+                }
+                </script>
+        </section>
+    </div>
+    <div class="footer">
+        <p>&copy; 2023 Sistema de Gestión de la Clínica Médica</p>
+    </div>
+</body>
+
+</html>

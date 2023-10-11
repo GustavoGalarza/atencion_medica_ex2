@@ -1,0 +1,196 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+nav {
+    justify-content: center;
+    display: flex;
+    background-color: rgba(0, 0, 0);
+    padding: 10px 0;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+}
+h1{
+    color: #fff;
+}
+p{
+    color: rgb(150, 150, 150);
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+}
+
+.menu li {
+    margin: 0 15px;
+    position: relative;
+}
+
+.menu a {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+}
+
+.menu a:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #000270;
+    bottom: 0;
+    left: 0;
+    transition: width 0.2s;
+}
+
+.menu a:hover:before {
+    width: 100%;
+    background: #000270;
+    transition: width 0.2s;
+}
+
+/* Estilo para el menú desplegable */
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: #000000;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 3;
+    top: 100%;
+}
+
+.menu li:hover .submenu {
+    display: block;
+}
+
+.submenu li {
+    padding: 10px 15px;
+}
+
+.submenu a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    
+}
+
+
+
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://img.freepik.com/vector-gratis/fondo-ciencia-medica-atencion-medica-simbolo-mas_1017-24814.jpg?w=826&t=st=1696973736~exp=1696974336~hmac=ea2d031035aa2cd514c7d0e590aaf724db203b4fd3939f2f20f8744f82eb59f3') no-repeat center center fixed;
+    background-size: cover;
+    z-index: -1;
+}
+.footer {
+    background-color: #000000; /* Color de fondo para el footer */
+    color: #585858; /* Color de texto en el footer */
+    text-align: center; /* Alinea el texto al centro */
+    padding: 5px; /* Espaciado interno */
+    position: fixed; /* Mantiene el footer en la parte inferior de la ventana */
+    bottom: 0; /* Se coloca en la parte inferior */
+    left: 0; /* Se coloca en el extremo izquierdo */
+    width: 100%; /* Se extiende a lo ancho de la ventana */
+    height: 35px;
+    z-index: 2; /* Para que esté por encima de otros elementos */
+}
+
+.contenido {
+    padding: 50px 20px; /* Añade espacio alrededor del contenido */
+    text-align: center;
+    justify-content: center;
+    color: #000000; /* Color de texto blanco */
+  }
+.contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Esto permite que los elementos se ajusten automáticamente si el espacio es insuficiente */
+}
+
+.izquierda {
+    flex: 1; /* Toma el 50% del espacio disponible */
+    padding: 20px; /* Agrega espacio alrededor del contenido */
+    text-align: left; /* Alinea el texto y otros elementos a la izquierda */
+}
+
+.derecha {
+    flex: 1;
+    padding: 20px;
+    text-align: right;
+    position: relative; /* Para posicionar los botones */
+}
+
+.slider {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+}
+
+.slide {
+    flex: 1;
+    min-width: 100%;
+    transition: 0.5s;
+}
+
+
+img {
+    width: 100%;
+    height: auto;
+    animation: desvanecer 4s ease-in-out infinite; /* Configuración de la animación */
+    border-radius: 20%; /* Para que la animación comience desde el centro */
+    overflow: hidden; /* Para ocultar las partes de la imagen fuera del círculo */
+}
+
+@keyframes desvanecer {
+    0% {
+        opacity: 0;
+        
+    }
+    25%{
+        opacity: 0,7;
+
+    }
+    50% {
+        opacity: 1;
+        
+    }
+    75%{
+        opacity: 0,7;
+    }
+    90% {
+        opacity: 0;
+        
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+

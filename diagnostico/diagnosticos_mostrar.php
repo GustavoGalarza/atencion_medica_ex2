@@ -1,3 +1,54 @@
+<?php
+
+$host = "localhost";
+$usuario = "root";
+$contrasena = "";
+$base_datos = "atencion_medica";
+$conexion = new mysqli($host, $usuario, $contrasena, $base_datos);
+if ($conexion->connect_error) {
+    die("Error de conexión a la base de datos: " . $conexion->connect_error);
+}
+$datos_paciente = "";
+$tabla_pacientes = "";
+if (isset($_POST['paciente_id']) && !empty($_POST['paciente_id'])) {
+    $paciente_id = $_POST['paciente_id'];
+    $sql = "SELECT * FROM diagnosticos WHERE ID_Diagnostico = $paciente_id";
+
+    $resultado = $conexion->query($sql);
+
+    if ($resultado->num_rows > 0) {
+        $row = $resultado->fetch_assoc();
+        $datos_paciente = "ID del Diagnostico: " . $row['ID_Diagnostico'] . "<br>";
+        $datos_paciente .= "ID del Paciente: " . $row['ID_Paciente'] . "<br>";
+        $datos_paciente .= "CondicionMedica: " . $row['CondicionMedica'] . "<br>";
+        $datos_paciente .= "Fecha: " . $row['Fecha'] . "<br>";
+    } else {
+        $datos_paciente = "Diagnostico no encontrado.";
+    }
+}
+
+if (isset($_POST['mostrar_todos_pacientes'])) {
+    $sql = "SELECT * FROM diagnosticos";
+    $resultado = $conexion->query($sql);
+    if ($resultado->num_rows > 0) {
+        $tabla_pacientes = "<table border='1'>";
+        $tabla_pacientes .= "<tr><th>ID_Diagnostico</th><th>Id_Paciente</th><th>Condicion Medica</th></tr>";
+        while ($row = $resultado->fetch_assoc()) {
+            $tabla_pacientes .= "<tr>";
+            $tabla_pacientes .= "<td>" . $row['ID_Diagnostico'] . "</td>";
+            $tabla_pacientes .= "<td>" . $row['ID_Paciente'] . "</td>";
+            $tabla_pacientes .= "<td>" . $row['CondicionMedica'] . "</td>";
+            $tabla_pacientes .= "</tr>";
+        }
+        $tabla_pacientes .= "</table>";
+    } else {
+        $tabla_pacientes = "No hay diagnosticos registrados.";
+    }
+}
+
+$conexion->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,47 +117,25 @@
     </nav>
     <div class="background-image"></div>
     <div class="contenido">
-        <form action="diagnostico_DB.php" method="POST">
-            <h2>Formulario de Diagnósticos</h2>
-            <label for="paciente_id">ID del Paciente:</label>
-            <select id="paciente_id" name="paciente_id" required>
-                <option value="">Selecciona un ID de paciente</option>
-                <?php
-                $host = "localhost";
-                $usuario = "root";
-                $contrasena = "";
-                $base_datos = "atencion_medica";
-                $conexion = new mysqli($host, $usuario, $contrasena, $base_datos);
-                if ($conexion->connect_error) {
-                    die("Error de conexión a la base de datos: " . $conexion->connect_error);
-                }
-                $sql = "SELECT ID_Paciente, Nombre FROM Pacientes";
-                $result = $conexion->query($sql);
+        <form action="diagnosticos_mostrar.php" method="POST">
+            <h2>Buscar Diagnostico por ID:</h2>
+            <label for="paciente_id">ID del Diagnostico:</label>
+            <input type="text" id="paciente_id" name="paciente_id">
+            <input type="submit" value="Mostrar Paciente">
+            <?php
+            echo $datos_paciente;
+            ?>
+        </form><br>
 
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<option value='" . $row['ID_Paciente'] . "'>" . $row['ID_Paciente'] . " - " . $row['Nombre'] . "</option>";
-                    }
-                }
-                $conexion->close();
-                ?>
-            </select><br><br>
-
-            <label for="condicion_medica">Condición Médica:</label>
-            <input type="text" id="condicion_medica" name="condicion_medica" required><br><br>
-
-            <label for="fecha">Fecha:</label>
-            <input type="date" id="fecha" name="fecha" required><br><br>
-
-            <input type="submit" name="submit" value="Guardar">
+        
+        <form action="diagnosticos_mostrar.php" method="POST">
+            <h2>Mostrar Todos los Diagnosticos:</h2>
+            <input type="submit" name="mostrar_todos_pacientes" value="Mostrar Todos los Pacientes">
+            <?php
+            echo $tabla_pacientes;
+            ?>
         </form>
-
-        <?php
-        if (isset($_GET['mensaje'])) {
-            echo "<p>{$_GET['mensaje']}</p>";
-        }
-        ?>
-</div>
+    </div>
     <div class="footer">
         <p>&copy; 2023 Sistema de Gestión de la Clínica Médica</p>
     </div>

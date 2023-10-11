@@ -66,46 +66,36 @@
     </nav>
     <div class="background-image"></div>
     <div class="contenido">
-        <form action="diagnostico_DB.php" method="POST">
-            <h2>Formulario de Diagnósticos</h2>
-            <label for="paciente_id">ID del Paciente:</label>
-            <select id="paciente_id" name="paciente_id" required>
-                <option value="">Selecciona un ID de paciente</option>
+        <form method="post" action="eliminar_diagnostico.php">
+            <h2>Eliminar un diagnostico</h2>
+            <p>Escoge el ID del diagnostico a eliminar</p>
+            <label for="ID_Diagnostico">Id del diagnostico:</label>
+            <select name="ID_Diagnostico" id="ID_Diagnostico">
                 <?php
-                $host = "localhost";
-                $usuario = "root";
-                $contrasena = "";
-                $base_datos = "atencion_medica";
-                $conexion = new mysqli($host, $usuario, $contrasena, $base_datos);
-                if ($conexion->connect_error) {
-                    die("Error de conexión a la base de datos: " . $conexion->connect_error);
+                $mysqli_link = mysqli_connect("localhost", "root", "", "atencion_medica");
+                if (mysqli_connect_errno()) {
+                    printf("MySQL connection failed with the error: %s", mysqli_connect_error());
+                    exit;
                 }
-                $sql = "SELECT ID_Paciente, Nombre FROM Pacientes";
-                $result = $conexion->query($sql);
 
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<option value='" . $row['ID_Paciente'] . "'>" . $row['ID_Paciente'] . " - " . $row['Nombre'] . "</option>";
-                    }
+                $select_query = "SELECT ID_Diagnostico FROM diagnosticos";
+                $result = mysqli_query($mysqli_link, $select_query);
+
+                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                    echo '<option value="' . $row['ID_Diagnostico'] . '">' . $row['ID_Diagnostico'] . '</option>';
                 }
-                $conexion->close();
+
+                mysqli_close($mysqli_link);
                 ?>
-            </select><br><br>
-
-            <label for="condicion_medica">Condición Médica:</label>
-            <input type="text" id="condicion_medica" name="condicion_medica" required><br><br>
-
-            <label for="fecha">Fecha:</label>
-            <input type="date" id="fecha" name="fecha" required><br><br>
-
-            <input type="submit" name="submit" value="Guardar">
+            </select>
+            <input type="submit" value="Eliminar">
         </form>
-
         <?php
-        if (isset($_GET['mensaje'])) {
-            echo "<p>{$_GET['mensaje']}</p>";
+        if (isset($_GET['eliminar'])) {
+            echo "<p>{$_GET['eliminar']}</p>";
         }
         ?>
+
 </div>
     <div class="footer">
         <p>&copy; 2023 Sistema de Gestión de la Clínica Médica</p>
